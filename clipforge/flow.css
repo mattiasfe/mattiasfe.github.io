@@ -1,0 +1,672 @@
+/* Animated "how it works" scene. One 12 s loop shared by every part. */
+/* a bit wider than the text column so the stations get room; figures keep their size */
+.flow { margin: 28px 0 8px calc(50% - min(420px, 50vw - 24px)); width: min(840px, calc(100vw - 48px)); }
+.flow svg { display: block; width: 100%; height: auto; overflow: visible; }
+.flow .lbl { fill: var(--text); font: 600 17px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; text-anchor: middle; }
+.flow .anim, .flow .bob, .flow .leg, .flow .tile-pop, .flow .pop { transform-box: fill-box; }
+.flow .anim { animation-duration: 12s; animation-iteration-count: infinite; animation-timing-function: ease-in-out; }
+
+/* idle bounce + feet */
+.flow .bob { animation: cf-bob .5s ease-in-out infinite alternate; }
+.flow .leg { animation: cf-step .5s ease-in-out infinite alternate; }
+.flow .leg.r { animation-direction: alternate-reverse; }
+@keyframes cf-bob { to { transform: translateY(-3px); } }
+@keyframes cf-step { to { transform: translateY(-3px); } }
+
+/* fetchers: walk to the source, pick up footage, bring it to the forge */
+.flow .walkA { animation-name: cf-walkA; }
+@keyframes cf-walkA {
+  0%, 2% { transform: translate(0, 0); }
+  14%, 19% { transform: translate(-100px, -30px); }
+  33%, 37% { transform: translate(80px, 89px); }
+  50%, 100% { transform: translate(0, 0); }
+}
+.flow .walkB { animation-name: cf-walkB; }
+@keyframes cf-walkB {
+  0%, 4% { transform: translate(0, 0); }
+  16%, 21% { transform: translate(-100px, 15px); }
+  34%, 38% { transform: translate(80px, -50px); }
+  52%, 100% { transform: translate(0, 0); }
+}
+.flow .reelA { animation-name: cf-reelA; }
+@keyframes cf-reelA {
+  0%, 16% { opacity: 0; transform: translateY(6px); }
+  18%, 35% { opacity: 1; transform: translateY(0); }
+  37%, 100% { opacity: 0; transform: translate(26px, 0); }
+}
+.flow .reelB { animation-name: cf-reelB; }
+@keyframes cf-reelB {
+  0%, 18% { opacity: 0; transform: translateY(6px); }
+  20%, 36% { opacity: 1; transform: translateY(0); }
+  38%, 100% { opacity: 0; transform: translate(26px, 0); }
+}
+
+/* the chef: strip slides over the table, scissors snip three times */
+.flow .strip { animation-name: cf-strip; animation-timing-function: linear; }
+@keyframes cf-strip {
+  0%, 37% { opacity: 0; transform: translateX(-130px); }
+  38% { opacity: 1; transform: translateX(-130px); }
+  50% { opacity: 1; transform: translateX(10px); }
+  51%, 100% { opacity: 0; transform: translateX(10px); }
+}
+.flow .sparks { animation-name: cf-sparks; animation-timing-function: linear; }
+@keyframes cf-sparks {
+  0%, 41.5%, 43.5%, 45%, 47%, 48.5%, 50.5%, 100% { opacity: 0; }
+  42%, 45.5%, 49% { opacity: 1; }
+}
+
+/* clips fly out, couriers carry them, platforms pop (keyframes generated below) */
+.flow .tile-pop { transform-origin: center; }
+.flow .check { animation-name: cf-check; }
+@keyframes cf-check {
+  0%, 52.5% { opacity: 0; transform: scale(.2); }
+  54%, 79% { opacity: 1; transform: scale(1); }
+  80%, 100% { opacity: 0; transform: scale(1); }
+}
+
+/* step captions light up in time with the scene */
+.steps { list-style: none; padding: 0; margin: 18px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+.steps li { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; font-size: 15px; line-height: 1.45; color: var(--muted); animation: 12s infinite; }
+.steps b { display: block; color: var(--text); }
+.steps .s1 { animation-name: cf-s1; }
+.steps .s2 { animation-name: cf-s2; }
+.steps .s3 { animation-name: cf-s3; }
+.steps .s4 { animation-name: cf-s4; }
+@keyframes cf-s1 { 0%, 36% { border-color: var(--accent); color: var(--text); } 38%, 100% { border-color: var(--line); color: var(--muted); } }
+@keyframes cf-s2 { 0%, 36%, 52%, 100% { border-color: var(--line); color: var(--muted); } 38%, 50% { border-color: var(--accent); color: var(--text); } }
+@keyframes cf-s3 { 0%, 50%, 59%, 100% { border-color: var(--line); color: var(--muted); } 52%, 57% { border-color: var(--accent); color: var(--text); } }
+@keyframes cf-s4 { 0%, 57%, 84%, 100% { border-color: var(--line); color: var(--muted); } 59%, 82% { border-color: var(--accent); color: var(--text); } }
+.steps .s5 { animation-name: cf-s5; }
+@keyframes cf-s5 { 0%, 82%, 100% { border-color: var(--line); color: var(--muted); } 84%, 98% { border-color: var(--accent); color: var(--text); } }
+
+/* life: lean into the walk, blink, poke to say hi */
+.flow .m { cursor: pointer; outline: none; }
+.flow .m:focus-visible .bob { filter: drop-shadow(0 0 4px var(--accent)); }
+.flow .lean { transform-box: fill-box; transform-origin: 50% 100%; }
+.flow .eyes { transform-box: fill-box; transform-origin: center; animation: cf-blink 4.2s infinite; }
+@keyframes cf-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+.flow .poke.hi { animation: cf-poke .7s ease-out; }
+@keyframes cf-poke { 0% { transform: translateY(0); } 35% { transform: translateY(-18px); } 70% { transform: translateY(0); } 85% { transform: translateY(-5px); } 100% { transform: translateY(0); } }
+.flow .say { opacity: 0; pointer-events: none; }
+.flow .poke.hi .say { animation: cf-say 1.6s ease-out; }
+@keyframes cf-say { 0% { opacity: 0; } 12%, 78% { opacity: 1; } 100% { opacity: 0; } }
+.flow .say rect, .flow .say path { fill: var(--bg); stroke: var(--accent); stroke-width: 1.5; }
+.flow .say text { fill: var(--text); font: 700 15px system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; text-anchor: middle; }
+.flow .bang { transform-box: fill-box; transform-origin: 50% 100%; }
+
+/* the routes things travel along */
+.flow .route { fill: none; stroke: var(--muted); stroke-opacity: .4; stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 2 10; animation: cf-march 1s linear infinite; }
+@keyframes cf-march { to { stroke-dashoffset: -12; } }
+
+.flow-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 10px; font-size: 14px; color: var(--muted); }
+.flow-bar button { font: inherit; color: var(--text); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; cursor: pointer; }
+.flow-bar button:hover { border-color: var(--accent); }
+.flow.paused *, .flow.paused .steps li { animation-play-state: paused !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .flow *, .steps li { animation: none !important; }
+  .flow .carry1, .flow .carry2, .flow .carry3, .flow .check { opacity: 1; }
+  .flow-bar button { display: none; }
+}
+
+/* chef pivots: blades and twirl turn around the scissors pivot, body and hat around their base */
+.flow .bladeL, .flow .bladeR, .flow .spinK, .flow .armK { transform-box: view-box; transform-origin: 0 0; }
+.flow .squashK, .flow .hatK { transform-origin: 50% 100%; }
+.flow .piece1, .flow .piece2, .flow .piece3 { transform-origin: center; }
+
+/* generated */
+/* lean + look direction, hops, '!' (built by build_flow.py) */
+.flow .leanA { animation-name: cf-leanA; }
+@keyframes cf-leanA {
+  0% { transform: rotate(0deg); }
+  2% { transform: rotate(0deg); }
+  3.5% { transform: rotate(-7deg); }
+  12.5% { transform: rotate(-7deg); }
+  14% { transform: rotate(0deg); }
+  19% { transform: rotate(0deg); }
+  20.5% { transform: rotate(7deg); }
+  31.5% { transform: rotate(7deg); }
+  33% { transform: rotate(0deg); }
+  37% { transform: rotate(0deg); }
+  38.5% { transform: rotate(-7deg); }
+  48.5% { transform: rotate(-7deg); }
+  50% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+.flow .lookA { animation-name: cf-lookA; }
+@keyframes cf-lookA {
+  0% { transform: translateX(0px); }
+  2% { transform: translateX(0px); }
+  3.5% { transform: translateX(-2.5px); }
+  12.5% { transform: translateX(-2.5px); }
+  14% { transform: translateX(0px); }
+  19% { transform: translateX(0px); }
+  20.5% { transform: translateX(2.5px); }
+  31.5% { transform: translateX(2.5px); }
+  33% { transform: translateX(0px); }
+  37% { transform: translateX(0px); }
+  38.5% { transform: translateX(-2.5px); }
+  48.5% { transform: translateX(-2.5px); }
+  50% { transform: translateX(0px); }
+  100% { transform: translateX(0px); }
+}
+.flow .leanB { animation-name: cf-leanB; }
+@keyframes cf-leanB {
+  0% { transform: rotate(0deg); }
+  4% { transform: rotate(0deg); }
+  5.5% { transform: rotate(-7deg); }
+  14.5% { transform: rotate(-7deg); }
+  16% { transform: rotate(0deg); }
+  21% { transform: rotate(0deg); }
+  22.5% { transform: rotate(7deg); }
+  32.5% { transform: rotate(7deg); }
+  34% { transform: rotate(0deg); }
+  38% { transform: rotate(0deg); }
+  39.5% { transform: rotate(-7deg); }
+  50.5% { transform: rotate(-7deg); }
+  52% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+.flow .lookB { animation-name: cf-lookB; }
+@keyframes cf-lookB {
+  0% { transform: translateX(0px); }
+  4% { transform: translateX(0px); }
+  5.5% { transform: translateX(-2.5px); }
+  14.5% { transform: translateX(-2.5px); }
+  16% { transform: translateX(0px); }
+  21% { transform: translateX(0px); }
+  22.5% { transform: translateX(2.5px); }
+  32.5% { transform: translateX(2.5px); }
+  34% { transform: translateX(0px); }
+  38% { transform: translateX(0px); }
+  39.5% { transform: translateX(-2.5px); }
+  50.5% { transform: translateX(-2.5px); }
+  52% { transform: translateX(0px); }
+  100% { transform: translateX(0px); }
+}
+.flow .leanC1 { animation-name: cf-leanC1; }
+@keyframes cf-leanC1 {
+  0% { transform: rotate(0deg); }
+  58% { transform: rotate(0deg); }
+  59.5% { transform: rotate(7deg); }
+  71.5% { transform: rotate(7deg); }
+  73% { transform: rotate(0deg); }
+  80% { transform: rotate(0deg); }
+  81.5% { transform: rotate(-7deg); }
+  92.5% { transform: rotate(-7deg); }
+  94% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+.flow .lookC1 { animation-name: cf-lookC1; }
+@keyframes cf-lookC1 {
+  0% { transform: translateX(0px); }
+  58% { transform: translateX(0px); }
+  59.5% { transform: translateX(2.5px); }
+  71.5% { transform: translateX(2.5px); }
+  73% { transform: translateX(0px); }
+  80% { transform: translateX(0px); }
+  81.5% { transform: translateX(-2.5px); }
+  92.5% { transform: translateX(-2.5px); }
+  94% { transform: translateX(0px); }
+  100% { transform: translateX(0px); }
+}
+.flow .leanC2 { animation-name: cf-leanC2; }
+@keyframes cf-leanC2 {
+  0% { transform: rotate(0deg); }
+  59% { transform: rotate(0deg); }
+  60.5% { transform: rotate(7deg); }
+  72.5% { transform: rotate(7deg); }
+  74% { transform: rotate(0deg); }
+  81% { transform: rotate(0deg); }
+  82.5% { transform: rotate(-7deg); }
+  93.5% { transform: rotate(-7deg); }
+  95% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+.flow .lookC2 { animation-name: cf-lookC2; }
+@keyframes cf-lookC2 {
+  0% { transform: translateX(0px); }
+  59% { transform: translateX(0px); }
+  60.5% { transform: translateX(2.5px); }
+  72.5% { transform: translateX(2.5px); }
+  74% { transform: translateX(0px); }
+  81% { transform: translateX(0px); }
+  82.5% { transform: translateX(-2.5px); }
+  93.5% { transform: translateX(-2.5px); }
+  95% { transform: translateX(0px); }
+  100% { transform: translateX(0px); }
+}
+.flow .leanC3 { animation-name: cf-leanC3; }
+@keyframes cf-leanC3 {
+  0% { transform: rotate(0deg); }
+  60% { transform: rotate(0deg); }
+  61.5% { transform: rotate(7deg); }
+  73.5% { transform: rotate(7deg); }
+  75% { transform: rotate(0deg); }
+  82% { transform: rotate(0deg); }
+  83.5% { transform: rotate(-7deg); }
+  94.5% { transform: rotate(-7deg); }
+  96% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+.flow .lookC3 { animation-name: cf-lookC3; }
+@keyframes cf-lookC3 {
+  0% { transform: translateX(0px); }
+  60% { transform: translateX(0px); }
+  61.5% { transform: translateX(2.5px); }
+  73.5% { transform: translateX(2.5px); }
+  75% { transform: translateX(0px); }
+  82% { transform: translateX(0px); }
+  83.5% { transform: translateX(-2.5px); }
+  94.5% { transform: translateX(-2.5px); }
+  96% { transform: translateX(0px); }
+  100% { transform: translateX(0px); }
+}
+.flow .hopA { animation-name: cf-hopA; }
+@keyframes cf-hopA {
+  0% { transform: translateY(0px); }
+  34.5% { transform: translateY(0px); }
+  35.5% { transform: translateY(-12px); }
+  36.5% { transform: translateY(0px); }
+  100% { transform: translateY(0px); }
+}
+.flow .hopB { animation-name: cf-hopB; }
+@keyframes cf-hopB {
+  0% { transform: translateY(0px); }
+  36% { transform: translateY(0px); }
+  37% { transform: translateY(-12px); }
+  38% { transform: translateY(0px); }
+  100% { transform: translateY(0px); }
+}
+.flow .hopC1 { animation-name: cf-hopC1; }
+@keyframes cf-hopC1 {
+  0% { transform: translateY(0px); }
+  78% { transform: translateY(0px); }
+  79% { transform: translateY(-12px); }
+  80% { transform: translateY(0px); }
+  81% { transform: translateY(-8.4px); }
+  82% { transform: translateY(0px); }
+  100% { transform: translateY(0px); }
+}
+.flow .hopC2 { animation-name: cf-hopC2; }
+@keyframes cf-hopC2 {
+  0% { transform: translateY(0px); }
+  79% { transform: translateY(0px); }
+  80% { transform: translateY(-12px); }
+  81% { transform: translateY(0px); }
+  82% { transform: translateY(-8.4px); }
+  83% { transform: translateY(0px); }
+  100% { transform: translateY(0px); }
+}
+.flow .hopC3 { animation-name: cf-hopC3; }
+@keyframes cf-hopC3 {
+  0% { transform: translateY(0px); }
+  80% { transform: translateY(0px); }
+  81% { transform: translateY(-12px); }
+  82% { transform: translateY(0px); }
+  83% { transform: translateY(-8.4px); }
+  84% { transform: translateY(0px); }
+  100% { transform: translateY(0px); }
+}
+.flow .hopK { animation-name: cf-hopK; }
+@keyframes cf-hopK {
+  0% { transform: translateY(0px); }
+  51% { transform: translateY(0px); }
+  52% { transform: translateY(-12px); }
+  53% { transform: translateY(0px); }
+  54% { transform: translateY(-8.4px); }
+  55% { transform: translateY(0px); }
+  100% { transform: translateY(0px); }
+}
+.flow .bangA { animation-name: cf-bangA; }
+@keyframes cf-bangA {
+  0%, 13.5% { opacity: 0; transform: scale(.3); }
+  14.5% { opacity: 1; transform: scale(1.2); }
+  15.5%, 17.5% { opacity: 1; transform: scale(1); }
+  18.5%, 100% { opacity: 0; transform: scale(1); }
+}
+.flow .bangB { animation-name: cf-bangB; }
+@keyframes cf-bangB {
+  0%, 15.5% { opacity: 0; transform: scale(.3); }
+  16.5% { opacity: 1; transform: scale(1.2); }
+  17.5%, 19.5% { opacity: 1; transform: scale(1); }
+  20.5%, 100% { opacity: 0; transform: scale(1); }
+}
+.flow .strip { animation-name: cf-strip2; animation-timing-function: ease-in-out; }
+@keyframes cf-strip2 {
+  0%, 37% { opacity: 0; transform: translateX(-130px); }
+  38% { opacity: 1; transform: translateX(-130px); }
+  41.2%, 42.6% { opacity: 1; transform: translateX(-22px); }
+  44.7%, 46.1% { opacity: 1; transform: translateX(18px); }
+  48.2%, 49.6% { opacity: 1; transform: translateX(58px); }
+  51% { opacity: 0; transform: translateX(130px); }
+  100% { opacity: 0; transform: translateX(130px); }
+}
+.flow .armK { animation-name: cf-armK; }
+@keyframes cf-armK {
+  0%, 100% { transform: rotate(0deg); }
+  8.4% { transform: rotate(-10deg); }
+  9% { transform: rotate(0deg); }
+  23.4% { transform: rotate(-10deg); }
+  24% { transform: rotate(0deg); }
+  40.9% { transform: rotate(-24deg); }
+  42% { transform: rotate(5deg); }
+  42.8% { transform: rotate(0deg); }
+  44.4% { transform: rotate(-24deg); }
+  45.5% { transform: rotate(5deg); }
+  46.3% { transform: rotate(0deg); }
+  47.9% { transform: rotate(-24deg); }
+  49% { transform: rotate(5deg); }
+  49.8% { transform: rotate(0deg); }
+  65.4% { transform: rotate(-10deg); }
+  66% { transform: rotate(0deg); }
+  85.4% { transform: rotate(-10deg); }
+  86% { transform: rotate(0deg); }
+}
+.flow .spinK { animation-name: cf-spinK; }
+@keyframes cf-spinK {
+  0%, 49.8% { transform: rotate(0deg); }
+  51.6% { transform: rotate(360deg); }
+  100% { transform: rotate(360deg); }
+}
+.flow .squashK { animation-name: cf-squashK; }
+@keyframes cf-squashK {
+  0%, 100% { transform: scale(1, 1); }
+  42% { transform: scale(1.05, .93); }
+  42.9% { transform: scale(1, 1); }
+  45.5% { transform: scale(1.05, .93); }
+  46.4% { transform: scale(1, 1); }
+  49% { transform: scale(1.05, .93); }
+  49.9% { transform: scale(1, 1); }
+}
+.flow .hatK { animation-name: cf-hatK; }
+@keyframes cf-hatK {
+  0%, 100% { transform: rotate(0deg); }
+  42.2% { transform: rotate(-8deg); }
+  42.7% { transform: rotate(5deg); }
+  43.3% { transform: rotate(0deg); }
+  45.7% { transform: rotate(-8deg); }
+  46.2% { transform: rotate(5deg); }
+  46.8% { transform: rotate(0deg); }
+  49.2% { transform: rotate(-8deg); }
+  49.7% { transform: rotate(5deg); }
+  50.3% { transform: rotate(0deg); }
+}
+.flow .lookK { animation-name: cf-lookK; }
+@keyframes cf-lookK {
+  0%, 37%, 100% { transform: translate(0, 0); }
+  38.5%, 49.5% { transform: translate(2px, 2.5px); }
+  51%, 57% { transform: translate(2.5px, -1px); }
+  59% { transform: translate(0, 0); }
+}
+.flow .tongueK { animation-name: cf-tongueK; }
+@keyframes cf-tongueK {
+  0%, 38%, 50%, 100% { opacity: 0; }
+  39%, 49.4% { opacity: 1; }
+}
+.flow .piece1 { animation-name: cf-piece1; }
+@keyframes cf-piece1 {
+  0%, 42% { opacity: 0; transform: translate(-45px, 6px) scale(.3) rotate(0deg); }
+  42.4% { opacity: 1; transform: translate(-42px, 0) scale(.45) rotate(-30deg); }
+  43.6% { opacity: 1; transform: translate(-22px, -30px) scale(.8) rotate(-200deg); }
+  45%, 50.9% { opacity: 1; transform: translate(0px, 0px) scale(1) rotate(-360deg); }
+  51%, 100% { opacity: 0; transform: translate(0px, 0px) scale(1) rotate(-360deg); }
+}
+.flow .piece2 { animation-name: cf-piece2; }
+@keyframes cf-piece2 {
+  0%, 45.5% { opacity: 0; transform: translate(-45px, 6px) scale(.3) rotate(0deg); }
+  45.9% { opacity: 1; transform: translate(-42px, 0) scale(.45) rotate(-30deg); }
+  47.1% { opacity: 1; transform: translate(-22px, -30px) scale(.8) rotate(-200deg); }
+  48.5%, 51.9% { opacity: 1; transform: translate(3px, -3px) scale(1) rotate(-360deg); }
+  52%, 100% { opacity: 0; transform: translate(3px, -3px) scale(1) rotate(-360deg); }
+}
+.flow .piece3 { animation-name: cf-piece3; }
+@keyframes cf-piece3 {
+  0%, 49% { opacity: 0; transform: translate(-45px, 6px) scale(.3) rotate(0deg); }
+  49.4% { opacity: 1; transform: translate(-42px, 0) scale(.45) rotate(-30deg); }
+  50.6% { opacity: 1; transform: translate(-22px, -30px) scale(.8) rotate(-200deg); }
+  52%, 52.9% { opacity: 1; transform: translate(6px, -6px) scale(1) rotate(-360deg); }
+  53%, 100% { opacity: 0; transform: translate(6px, -6px) scale(1) rotate(-360deg); }
+}
+.flow .bladeL { animation-name: cf-bladeL; animation-timing-function: linear; }
+@keyframes cf-bladeL {
+  0% { transform: rotate(0deg); }
+  7.8% { transform: rotate(0deg); }
+  8.5% { transform: rotate(-15.4deg); }
+  9% { transform: rotate(0deg); }
+  22.8% { transform: rotate(0deg); }
+  23.5% { transform: rotate(-15.4deg); }
+  24% { transform: rotate(0deg); }
+  41% { transform: rotate(-22deg); }
+  42% { transform: rotate(0deg); }
+  44.5% { transform: rotate(-22deg); }
+  45.5% { transform: rotate(0deg); }
+  48% { transform: rotate(-22deg); }
+  49% { transform: rotate(0deg); }
+  64.8% { transform: rotate(0deg); }
+  65.5% { transform: rotate(-15.4deg); }
+  66% { transform: rotate(0deg); }
+  84.8% { transform: rotate(0deg); }
+  85.5% { transform: rotate(-15.4deg); }
+  86% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+.flow .bladeR { animation-name: cf-bladeR; animation-timing-function: linear; }
+@keyframes cf-bladeR {
+  0% { transform: rotate(0deg); }
+  7.8% { transform: rotate(0deg); }
+  8.5% { transform: rotate(15.4deg); }
+  9% { transform: rotate(0deg); }
+  22.8% { transform: rotate(0deg); }
+  23.5% { transform: rotate(15.4deg); }
+  24% { transform: rotate(0deg); }
+  41% { transform: rotate(22deg); }
+  42% { transform: rotate(0deg); }
+  44.5% { transform: rotate(22deg); }
+  45.5% { transform: rotate(0deg); }
+  48% { transform: rotate(22deg); }
+  49% { transform: rotate(0deg); }
+  64.8% { transform: rotate(0deg); }
+  65.5% { transform: rotate(15.4deg); }
+  66% { transform: rotate(0deg); }
+  84.8% { transform: rotate(0deg); }
+  85.5% { transform: rotate(15.4deg); }
+  86% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+.flow .walkC1 { animation-name: cf-walkC1; }
+@keyframes cf-walkC1 {
+  0%, 58% { transform: translate(0, 0); }
+  73%, 80% { transform: translate(85px, -106px); }
+  94%, 100% { transform: translate(0, 0); }
+}
+.flow .fly1 { animation-name: cf-fly1; }
+@keyframes cf-fly1 {
+  0%, 50% { opacity: 0; transform: translate(0, 0); }
+  51% { opacity: 1; transform: translate(0, 0); }
+  56% { opacity: 1; transform: translate(77px, -108px); }
+  56.5%, 100% { opacity: 0; transform: translate(77px, -108px); }
+}
+.flow .carry1 { animation-name: cf-carry1; }
+@keyframes cf-carry1 {
+  0%, 55.9% { opacity: 0; transform: translate(0, 0); }
+  56%, 74% { opacity: 1; transform: translate(0, 0); }
+  77% { opacity: 0; transform: translate(42px, 10px) scale(.6); }
+  100% { opacity: 0; transform: translate(0, 0); }
+}
+.flow .tile1 { animation-name: cf-tile1; }
+@keyframes cf-tile1 { 0%, 76%, 81%, 100% { transform: scale(1); } 78% { transform: scale(1.12); } }
+.flow .rx1-0 { animation-name: cf-rx1-0; animation-timing-function: ease-out; }
+@keyframes cf-rx1-0 { 0%, 77% { opacity: 0; transform: translate(0, 0) scale(.4); } 78.2% { opacity: 1; transform: translate(-2.8px, -8px) scale(1.15); } 84.5%, 100% { opacity: 0; transform: translate(-14px, -58px) scale(.85); } }
+.flow .rx1-1 { animation-name: cf-rx1-1; animation-timing-function: ease-out; }
+@keyframes cf-rx1-1 { 0%, 78.7% { opacity: 0; transform: translate(0, 0) scale(.4); } 79.9% { opacity: 1; transform: translate(2.4px, -8px) scale(1.15); } 86.2%, 100% { opacity: 0; transform: translate(12px, -58px) scale(.85); } }
+.flow .rx1-2 { animation-name: cf-rx1-2; animation-timing-function: ease-out; }
+@keyframes cf-rx1-2 { 0%, 80.4% { opacity: 0; transform: translate(0, 0) scale(.4); } 81.6% { opacity: 1; transform: translate(-1.2px, -8px) scale(1.15); } 87.9%, 100% { opacity: 0; transform: translate(-6px, -58px) scale(.85); } }
+.flow .rx1-3 { animation-name: cf-rx1-3; animation-timing-function: ease-out; }
+@keyframes cf-rx1-3 { 0%, 82.1% { opacity: 0; transform: translate(0, 0) scale(.4); } 83.3% { opacity: 1; transform: translate(3.2px, -8px) scale(1.15); } 89.6%, 100% { opacity: 0; transform: translate(16px, -58px) scale(.85); } }
+.flow .rx1-4 { animation-name: cf-rx1-4; animation-timing-function: ease-out; }
+@keyframes cf-rx1-4 { 0%, 83.8% { opacity: 0; transform: translate(0, 0) scale(.4); } 85% { opacity: 1; transform: translate(-3.6px, -8px) scale(1.15); } 91.3%, 100% { opacity: 0; transform: translate(-18px, -58px) scale(.85); } }
+.flow .rx1-5 { animation-name: cf-rx1-5; animation-timing-function: ease-out; }
+@keyframes cf-rx1-5 { 0%, 85.5% { opacity: 0; transform: translate(0, 0) scale(.4); } 86.7% { opacity: 1; transform: translate(1.2px, -8px) scale(1.15); } 93%, 100% { opacity: 0; transform: translate(6px, -58px) scale(.85); } }
+.flow .rx1-6 { animation-name: cf-rx1-6; animation-timing-function: ease-out; }
+@keyframes cf-rx1-6 { 0%, 87.2% { opacity: 0; transform: translate(0, 0) scale(.4); } 88.4% { opacity: 1; transform: translate(-2px, -8px) scale(1.15); } 94.7%, 100% { opacity: 0; transform: translate(-10px, -58px) scale(.85); } }
+.flow .rx1-7 { animation-name: cf-rx1-7; animation-timing-function: ease-out; }
+@keyframes cf-rx1-7 { 0%, 88.9% { opacity: 0; transform: translate(0, 0) scale(.4); } 90.1% { opacity: 1; transform: translate(0.8px, -8px) scale(1.15); } 96.4%, 100% { opacity: 0; transform: translate(4px, -58px) scale(.85); } }
+.flow .walkC2 { animation-name: cf-walkC2; }
+@keyframes cf-walkC2 {
+  0%, 59% { transform: translate(0, 0); }
+  74%, 81% { transform: translate(85px, -70px); }
+  95%, 100% { transform: translate(0, 0); }
+}
+.flow .fly2 { animation-name: cf-fly2; }
+@keyframes cf-fly2 {
+  0%, 51% { opacity: 0; transform: translate(0, 0); }
+  52% { opacity: 1; transform: translate(0, 0); }
+  57% { opacity: 1; transform: translate(77px, -8px); }
+  57.5%, 100% { opacity: 0; transform: translate(77px, -8px); }
+}
+.flow .carry2 { animation-name: cf-carry2; }
+@keyframes cf-carry2 {
+  0%, 56.9% { opacity: 0; transform: translate(0, 0); }
+  57%, 75% { opacity: 1; transform: translate(0, 0); }
+  78% { opacity: 0; transform: translate(42px, 10px) scale(.6); }
+  100% { opacity: 0; transform: translate(0, 0); }
+}
+.flow .tile2 { animation-name: cf-tile2; }
+@keyframes cf-tile2 { 0%, 77%, 82%, 100% { transform: scale(1); } 79% { transform: scale(1.12); } }
+.flow .rx2-0 { animation-name: cf-rx2-0; animation-timing-function: ease-out; }
+@keyframes cf-rx2-0 { 0%, 78% { opacity: 0; transform: translate(0, 0) scale(.4); } 79.2% { opacity: 1; transform: translate(-2.8px, -8px) scale(1.15); } 85.5%, 100% { opacity: 0; transform: translate(-14px, -58px) scale(.85); } }
+.flow .rx2-1 { animation-name: cf-rx2-1; animation-timing-function: ease-out; }
+@keyframes cf-rx2-1 { 0%, 79.7% { opacity: 0; transform: translate(0, 0) scale(.4); } 80.9% { opacity: 1; transform: translate(2.4px, -8px) scale(1.15); } 87.2%, 100% { opacity: 0; transform: translate(12px, -58px) scale(.85); } }
+.flow .rx2-2 { animation-name: cf-rx2-2; animation-timing-function: ease-out; }
+@keyframes cf-rx2-2 { 0%, 81.4% { opacity: 0; transform: translate(0, 0) scale(.4); } 82.6% { opacity: 1; transform: translate(-1.2px, -8px) scale(1.15); } 88.9%, 100% { opacity: 0; transform: translate(-6px, -58px) scale(.85); } }
+.flow .rx2-3 { animation-name: cf-rx2-3; animation-timing-function: ease-out; }
+@keyframes cf-rx2-3 { 0%, 83.1% { opacity: 0; transform: translate(0, 0) scale(.4); } 84.3% { opacity: 1; transform: translate(3.2px, -8px) scale(1.15); } 90.6%, 100% { opacity: 0; transform: translate(16px, -58px) scale(.85); } }
+.flow .rx2-4 { animation-name: cf-rx2-4; animation-timing-function: ease-out; }
+@keyframes cf-rx2-4 { 0%, 84.8% { opacity: 0; transform: translate(0, 0) scale(.4); } 86% { opacity: 1; transform: translate(-3.6px, -8px) scale(1.15); } 92.3%, 100% { opacity: 0; transform: translate(-18px, -58px) scale(.85); } }
+.flow .rx2-5 { animation-name: cf-rx2-5; animation-timing-function: ease-out; }
+@keyframes cf-rx2-5 { 0%, 86.5% { opacity: 0; transform: translate(0, 0) scale(.4); } 87.7% { opacity: 1; transform: translate(1.2px, -8px) scale(1.15); } 94%, 100% { opacity: 0; transform: translate(6px, -58px) scale(.85); } }
+.flow .rx2-6 { animation-name: cf-rx2-6; animation-timing-function: ease-out; }
+@keyframes cf-rx2-6 { 0%, 88.2% { opacity: 0; transform: translate(0, 0) scale(.4); } 89.4% { opacity: 1; transform: translate(-2px, -8px) scale(1.15); } 95.7%, 100% { opacity: 0; transform: translate(-10px, -58px) scale(.85); } }
+.flow .rx2-7 { animation-name: cf-rx2-7; animation-timing-function: ease-out; }
+@keyframes cf-rx2-7 { 0%, 89.9% { opacity: 0; transform: translate(0, 0) scale(.4); } 91.1% { opacity: 1; transform: translate(0.8px, -8px) scale(1.15); } 97.4%, 100% { opacity: 0; transform: translate(4px, -58px) scale(.85); } }
+.flow .walkC3 { animation-name: cf-walkC3; }
+@keyframes cf-walkC3 {
+  0%, 60% { transform: translate(0, 0); }
+  75%, 82% { transform: translate(85px, -34px); }
+  96%, 100% { transform: translate(0, 0); }
+}
+.flow .fly3 { animation-name: cf-fly3; }
+@keyframes cf-fly3 {
+  0%, 52% { opacity: 0; transform: translate(0, 0); }
+  53% { opacity: 1; transform: translate(0, 0); }
+  58% { opacity: 1; transform: translate(77px, 92px); }
+  58.5%, 100% { opacity: 0; transform: translate(77px, 92px); }
+}
+.flow .carry3 { animation-name: cf-carry3; }
+@keyframes cf-carry3 {
+  0%, 57.9% { opacity: 0; transform: translate(0, 0); }
+  58%, 76% { opacity: 1; transform: translate(0, 0); }
+  79% { opacity: 0; transform: translate(42px, 10px) scale(.6); }
+  100% { opacity: 0; transform: translate(0, 0); }
+}
+.flow .tile3 { animation-name: cf-tile3; }
+@keyframes cf-tile3 { 0%, 78%, 83%, 100% { transform: scale(1); } 80% { transform: scale(1.12); } }
+.flow .rx3-0 { animation-name: cf-rx3-0; animation-timing-function: ease-out; }
+@keyframes cf-rx3-0 { 0%, 79% { opacity: 0; transform: translate(0, 0) scale(.4); } 80.2% { opacity: 1; transform: translate(-2.8px, -8px) scale(1.15); } 86.5%, 100% { opacity: 0; transform: translate(-14px, -58px) scale(.85); } }
+.flow .rx3-1 { animation-name: cf-rx3-1; animation-timing-function: ease-out; }
+@keyframes cf-rx3-1 { 0%, 80.7% { opacity: 0; transform: translate(0, 0) scale(.4); } 81.9% { opacity: 1; transform: translate(2.4px, -8px) scale(1.15); } 88.2%, 100% { opacity: 0; transform: translate(12px, -58px) scale(.85); } }
+.flow .rx3-2 { animation-name: cf-rx3-2; animation-timing-function: ease-out; }
+@keyframes cf-rx3-2 { 0%, 82.4% { opacity: 0; transform: translate(0, 0) scale(.4); } 83.6% { opacity: 1; transform: translate(-1.2px, -8px) scale(1.15); } 89.9%, 100% { opacity: 0; transform: translate(-6px, -58px) scale(.85); } }
+.flow .rx3-3 { animation-name: cf-rx3-3; animation-timing-function: ease-out; }
+@keyframes cf-rx3-3 { 0%, 84.1% { opacity: 0; transform: translate(0, 0) scale(.4); } 85.3% { opacity: 1; transform: translate(3.2px, -8px) scale(1.15); } 91.6%, 100% { opacity: 0; transform: translate(16px, -58px) scale(.85); } }
+.flow .rx3-4 { animation-name: cf-rx3-4; animation-timing-function: ease-out; }
+@keyframes cf-rx3-4 { 0%, 85.8% { opacity: 0; transform: translate(0, 0) scale(.4); } 87% { opacity: 1; transform: translate(-3.6px, -8px) scale(1.15); } 93.3%, 100% { opacity: 0; transform: translate(-18px, -58px) scale(.85); } }
+.flow .rx3-5 { animation-name: cf-rx3-5; animation-timing-function: ease-out; }
+@keyframes cf-rx3-5 { 0%, 87.5% { opacity: 0; transform: translate(0, 0) scale(.4); } 88.7% { opacity: 1; transform: translate(1.2px, -8px) scale(1.15); } 95%, 100% { opacity: 0; transform: translate(6px, -58px) scale(.85); } }
+.flow .rx3-6 { animation-name: cf-rx3-6; animation-timing-function: ease-out; }
+@keyframes cf-rx3-6 { 0%, 89.2% { opacity: 0; transform: translate(0, 0) scale(.4); } 90.4% { opacity: 1; transform: translate(-2px, -8px) scale(1.15); } 96.7%, 100% { opacity: 0; transform: translate(-10px, -58px) scale(.85); } }
+.flow .rx3-7 { animation-name: cf-rx3-7; animation-timing-function: ease-out; }
+@keyframes cf-rx3-7 { 0%, 90.9% { opacity: 0; transform: translate(0, 0) scale(.4); } 92.1% { opacity: 1; transform: translate(0.8px, -8px) scale(1.15); } 98.4%, 100% { opacity: 0; transform: translate(4px, -58px) scale(.85); } }
+.flow .armsUpA { animation-name: cf-armsUpA; } .flow .armsDnA { animation-name: cf-armsDnA; }
+@keyframes cf-armsUpA { 0%, 17.6% { opacity: 0; } 18%, 36.2% { opacity: 1; } 36.6%, 100% { opacity: 0; } }
+@keyframes cf-armsDnA { 0%, 17.6% { opacity: 1; } 18%, 36.2% { opacity: 0; } 36.6%, 100% { opacity: 1; } }
+.flow .armsUpB { animation-name: cf-armsUpB; } .flow .armsDnB { animation-name: cf-armsDnB; }
+@keyframes cf-armsUpB { 0%, 19.6% { opacity: 0; } 20%, 37.2% { opacity: 1; } 37.6%, 100% { opacity: 0; } }
+@keyframes cf-armsDnB { 0%, 19.6% { opacity: 1; } 20%, 37.2% { opacity: 0; } 37.6%, 100% { opacity: 1; } }
+.flow .armsUpC1 { animation-name: cf-armsUpC1; } .flow .armsDnC1 { animation-name: cf-armsDnC1; }
+@keyframes cf-armsUpC1 { 0%, 55.8% { opacity: 0; } 56.2%, 76.5% { opacity: 1; } 76.9%, 100% { opacity: 0; } }
+@keyframes cf-armsDnC1 { 0%, 55.8% { opacity: 1; } 56.2%, 76.5% { opacity: 0; } 76.9%, 100% { opacity: 1; } }
+.flow .armsUpC2 { animation-name: cf-armsUpC2; } .flow .armsDnC2 { animation-name: cf-armsDnC2; }
+@keyframes cf-armsUpC2 { 0%, 56.8% { opacity: 0; } 57.2%, 77.5% { opacity: 1; } 77.9%, 100% { opacity: 0; } }
+@keyframes cf-armsDnC2 { 0%, 56.8% { opacity: 1; } 57.2%, 77.5% { opacity: 0; } 77.9%, 100% { opacity: 1; } }
+.flow .armsUpC3 { animation-name: cf-armsUpC3; } .flow .armsDnC3 { animation-name: cf-armsDnC3; }
+@keyframes cf-armsUpC3 { 0%, 57.8% { opacity: 0; } 58.2%, 78.5% { opacity: 1; } 78.9%, 100% { opacity: 0; } }
+@keyframes cf-armsDnC3 { 0%, 57.8% { opacity: 1; } 58.2%, 78.5% { opacity: 0; } 78.9%, 100% { opacity: 1; } }
+.flow .recipe { animation-name: cf-recipe; }
+@keyframes cf-recipe {
+  0%, 37%, 100% { opacity: 0; transform: translateY(-14px); }
+  38.5%, 57% { opacity: 1; transform: translateY(0); }
+  59% { opacity: 0; transform: translateY(0); }
+}
+.flow .link1 { animation-name: cf-link1; animation-timing-function: linear; }
+@keyframes cf-link1 {
+  0%, 82% { opacity: 0; transform: translate(0, 0) scale(.4); }
+  83.1667% { opacity: 1; transform: translate(-110.6px, -41.7px) scale(1); }
+  84.3333% { opacity: 1; transform: translate(-220.9px, -49.3px) scale(1); }
+  85.5% { opacity: 1; transform: translate(-331.0px, -23.0px) scale(1); }
+  86.6667% { opacity: 1; transform: translate(-440.9px, 37.3px) scale(1); }
+  87.8333% { opacity: 1; transform: translate(-550.6px, 131.7px) scale(1); }
+  89% { opacity: 1; transform: translate(-660.0px, 260.0px) scale(0.5); }
+  89.4%, 100% { opacity: 0; transform: translate(-660px, 260px) scale(.3); }
+}
+.flow .coin1 { animation-name: cf-coin1; animation-timing-function: ease-out; }
+@keyframes cf-coin1 {
+  0%, 89% { opacity: 0; transform: translateY(0) scale(.4); }
+  89.6% { opacity: 1; transform: translateY(-8px) scale(1.15); }
+  95%, 100% { opacity: 0; transform: translateY(-58px) scale(.9); }
+}
+.flow .link2 { animation-name: cf-link2; animation-timing-function: linear; }
+@keyframes cf-link2 {
+  0%, 83.6% { opacity: 0; transform: translate(0, 0) scale(.4); }
+  84.7667% { opacity: 1; transform: translate(-110.6px, -83.2px) scale(1); }
+  85.9333% { opacity: 1; transform: translate(-220.9px, -124.9px) scale(1); }
+  87.1% { opacity: 1; transform: translate(-331.0px, -125.0px) scale(1); }
+  88.2667% { opacity: 1; transform: translate(-440.9px, -83.6px) scale(1); }
+  89.4333% { opacity: 1; transform: translate(-550.6px, -0.6px) scale(1); }
+  90.6% { opacity: 1; transform: translate(-660.0px, 124.0px) scale(0.5); }
+  91%, 100% { opacity: 0; transform: translate(-660px, 124px) scale(.3); }
+}
+.flow .coin2 { animation-name: cf-coin2; animation-timing-function: ease-out; }
+@keyframes cf-coin2 {
+  0%, 90.6% { opacity: 0; transform: translateY(0) scale(.4); }
+  91.2% { opacity: 1; transform: translateY(-8px) scale(1.15); }
+  96.6%, 100% { opacity: 0; transform: translateY(-58px) scale(.9); }
+}
+.flow .link3 { animation-name: cf-link3; animation-timing-function: linear; }
+@keyframes cf-link3 {
+  0%, 85.2% { opacity: 0; transform: translate(0, 0) scale(.4); }
+  86.3667% { opacity: 1; transform: translate(-110.6px, -124.8px) scale(1); }
+  87.5333% { opacity: 1; transform: translate(-220.9px, -200.4px) scale(1); }
+  88.7% { opacity: 1; transform: translate(-331.0px, -227.0px) scale(1); }
+  89.8667% { opacity: 1; transform: translate(-440.9px, -204.4px) scale(1); }
+  91.0333% { opacity: 1; transform: translate(-550.6px, -132.8px) scale(1); }
+  92.2% { opacity: 1; transform: translate(-660.0px, -12.0px) scale(0.5); }
+  92.6%, 100% { opacity: 0; transform: translate(-660px, -12px) scale(.3); }
+}
+.flow .coin3 { animation-name: cf-coin3; animation-timing-function: ease-out; }
+@keyframes cf-coin3 {
+  0%, 92.2% { opacity: 0; transform: translateY(0) scale(.4); }
+  92.8% { opacity: 1; transform: translateY(-8px) scale(1.15); }
+  98.2%, 100% { opacity: 0; transform: translateY(-58px) scale(.9); }
+}
+.flow .crpop { animation-name: cf-crpop; transform-origin: center; }
+@keyframes cf-crpop {
+  0%, 100% { transform: scale(1); }
+  89% { transform: scale(1.12); }
+  89.8% { transform: scale(1); }
+  90.6% { transform: scale(1.12); }
+  91.4% { transform: scale(1); }
+  92.2% { transform: scale(1.12); }
+  93% { transform: scale(1); }
+}

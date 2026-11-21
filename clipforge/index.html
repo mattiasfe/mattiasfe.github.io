@@ -7,6 +7,8 @@
   <meta name="description" content="ClipForge turns long Twitch streams into short vertical clips and posts them to the creator's own accounts.">
   <link rel="icon" href="icon.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="flow.css">
+  <script src="flow.js" defer></script>
 </head>
 <body>
 <main>
@@ -14,6 +16,202 @@
 
   <h1>Short clips from long streams</h1>
   <p class="muted">A personal tool for turning Twitch streams into vertical short-form videos.</p>
+
+  <h2>How it works</h2>
+  <div class="flow">
+    <svg viewBox="-70 -50 840 450" aria-labelledby="cfTitle cfDesc">
+      <title id="cfTitle">How ClipForge works</title>
+      <desc id="cfDesc">One little helper fetches a long stream from Twitch, another fetches a campaign brief from Content Rewards, and both carry them to the chef. Following the brief, the chef snips the stream into short vertical clips with scissors, each clip gets a check mark, and three couriers carry the clips to YouTube Shorts, TikTok and Instagram, where likes, views and reposts float up. Finally the post links fly back to Content Rewards and gold coins pop out.</desc>
+      <defs>
+        <linearGradient id="cfPink" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f06aa8"/><stop offset="1" stop-color="#b8246f"/></linearGradient>
+        <linearGradient id="cfPurple" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9a78e0"/><stop offset="1" stop-color="#5a33a3"/></linearGradient>
+        <linearGradient id="cfClip" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b1450"/><stop offset="1" stop-color="#d0287a"/></linearGradient>
+        <linearGradient id="cfTable" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2d5c"/><stop offset="1" stop-color="#211836"/></linearGradient>
+        <linearGradient id="cfInsta" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".35" stop-color="#fa7e1e"/><stop offset=".6" stop-color="#d62976"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient>
+        <linearGradient id="cfScreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b3aa8"/><stop offset="1" stop-color="#d0287a"/></linearGradient>
+        <clipPath id="cfBoard"><rect x="300" y="220" width="140" height="24"/></clipPath>
+      </defs>
+
+      <!-- routes -->
+      <path class="route" d="M70 112 C170 112 220 220 288 228"/>
+      <path class="route" d="M70 318 C170 318 220 240 288 236"/>
+      <path class="route" d="M452 224 C540 224 570 56 634 56"/>
+      <path class="route" d="M452 230 C540 230 570 192 634 192"/>
+      <path class="route" d="M452 236 C540 236 570 328 634 328"/>
+
+      <!-- sources -->
+      <g transform="translate(-36 60)">
+        <rect width="96" height="96" rx="22" fill="#9146ff"/>
+        <path d="M30 20 L22 32 V72 H36 V82 L46 72 H56 L74 54 V20 Z" fill="#fff"/>
+        <path d="M30 27 H68 V51 L58 61 H46 L38 69 V61 H30 Z" fill="#9146ff"/>
+        <rect x="44" y="35" width="5" height="15" fill="#fff"/><rect x="56" y="35" width="5" height="15" fill="#fff"/>
+      </g>
+      <text class="lbl" x="12" y="180">Twitch</text>
+      <g transform="translate(-36 268)"><g class="anim crpop">
+        <rect width="96" height="96" rx="22" fill="#14121c" stroke="#3a3550"/>
+        <circle cx="48" cy="48" r="27" fill="#ffc83d"/><circle cx="48" cy="48" r="21" fill="none" stroke="#e0a400" stroke-width="3"/>
+        <text x="48" y="58" text-anchor="middle" font-size="28" font-weight="800" fill="#7a5600" font-family="system-ui, sans-serif">$</text>
+      </g></g>
+      <text class="lbl" x="12" y="388">Content Rewards</text>
+      <g transform="translate(-2 264)"><g class="anim coin1" opacity="0"><circle r="11" fill="#ffc83d" stroke="#e0a400" stroke-width="2"/><text y="4.5" text-anchor="middle" font-size="13" font-weight="900" fill="#7a5600" font-family="system-ui, sans-serif">$</text></g></g>
+      <g transform="translate(18 264)"><g class="anim coin2" opacity="0"><circle r="11" fill="#ffc83d" stroke="#e0a400" stroke-width="2"/><text y="4.5" text-anchor="middle" font-size="13" font-weight="900" fill="#7a5600" font-family="system-ui, sans-serif">$</text></g></g>
+      <g transform="translate(32 264)"><g class="anim coin3" opacity="0"><circle r="11" fill="#ffc83d" stroke="#e0a400" stroke-width="2"/><text y="4.5" text-anchor="middle" font-size="13" font-weight="900" fill="#7a5600" font-family="system-ui, sans-serif">$</text></g></g>
+
+      <!-- destinations -->
+      <g transform="translate(640 24)"><g class="anim tile-pop tile1"><rect width="64" height="64" rx="16" fill="#ff0033"/><rect x="13" y="19" width="38" height="26" rx="8" fill="#fff"/><path d="M28 25 L39 32 L28 39 Z" fill="#ff0033"/></g></g>
+      <text class="lbl" x="672" y="108">YouTube Shorts</text>
+      <g transform="translate(666 26)"><g class="anim pop rx1-0" opacity="0"><circle r="11" fill="#ff3b6b" stroke="#fff" stroke-width="1.5"/><path d="M0 4.5 C-6.5 -0.5 -7.5 -6 -3.6 -7 C-1.6 -7.5 0 -5.8 0 -4.6 C0 -5.8 1.6 -7.5 3.6 -7 C7.5 -6 6.5 -0.5 0 4.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(682 26)"><g class="anim pop rx1-1" opacity="0"><circle r="11" fill="#6d48b8" stroke="#fff" stroke-width="1.5"/><path d="M-3 -5.5 L5.5 0 L-3 5.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(658 26)"><g class="anim pop rx1-2" opacity="0"><circle r="11" fill="#ff3b6b" stroke="#fff" stroke-width="1.5"/><path d="M0 4.5 C-6.5 -0.5 -7.5 -6 -3.6 -7 C-1.6 -7.5 0 -5.8 0 -4.6 C0 -5.8 1.6 -7.5 3.6 -7 C7.5 -6 6.5 -0.5 0 4.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(676 26)"><g class="anim pop rx1-3" opacity="0"><circle r="11" fill="#22b573" stroke="#fff" stroke-width="1.5"/><path d="M-5 -1 V-3 H3 M1 -5.5 L3.8 -3 L1 -0.5 M5 1 V3 H-3 M-1 5.5 L-3.8 3 L-1 0.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+      <g transform="translate(686 26)"><g class="anim pop rx1-4" opacity="0"><circle r="11" fill="#ff3b6b" stroke="#fff" stroke-width="1.5"/><path d="M0 4.5 C-6.5 -0.5 -7.5 -6 -3.6 -7 C-1.6 -7.5 0 -5.8 0 -4.6 C0 -5.8 1.6 -7.5 3.6 -7 C7.5 -6 6.5 -0.5 0 4.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(662 26)"><g class="anim pop rx1-5" opacity="0"><circle r="11" fill="#6d48b8" stroke="#fff" stroke-width="1.5"/><path d="M-3 -5.5 L5.5 0 L-3 5.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(670 26)"><g class="anim pop rx1-6" opacity="0"><circle r="11" fill="#22b573" stroke="#fff" stroke-width="1.5"/><path d="M-5 -1 V-3 H3 M1 -5.5 L3.8 -3 L1 -0.5 M5 1 V3 H-3 M-1 5.5 L-3.8 3 L-1 0.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+      <g transform="translate(680 26)"><g class="anim pop rx1-7" opacity="0"><circle r="11" fill="#ff3b6b" stroke="#fff" stroke-width="1.5"/><path d="M0 4.5 C-6.5 -0.5 -7.5 -6 -3.6 -7 C-1.6 -7.5 0 -5.8 0 -4.6 C0 -5.8 1.6 -7.5 3.6 -7 C7.5 -6 6.5 -0.5 0 4.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(640 160)"><g class="anim tile-pop tile2"><rect width="64" height="64" rx="16" fill="#000" stroke="#333"/><g font-family="system-ui, sans-serif" font-size="36" font-weight="800" text-anchor="middle"><text x="30" y="45" fill="#25f4ee">&#9834;</text><text x="34" y="47" fill="#fe2c55">&#9834;</text><text x="32" y="46" fill="#fff">&#9834;</text></g></g></g>
+      <text class="lbl" x="672" y="244">TikTok</text>
+      <g transform="translate(666 162)"><g class="anim pop rx2-0" opacity="0"><circle r="11" fill="#ff3b6b" stroke="#fff" stroke-width="1.5"/><path d="M0 4.5 C-6.5 -0.5 -7.5 -6 -3.6 -7 C-1.6 -7.5 0 -5.8 0 -4.6 C0 -5.8 1.6 -7.5 3.6 -7 C7.5 -6 6.5 -0.5 0 4.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(682 162)"><g class="anim pop rx2-1" opacity="0"><circle r="11" fill="#6d48b8" stroke="#fff" stroke-width="1.5"/><path d="M-3 -5.5 L5.5 0 L-3 5.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(658 162)"><g class="anim pop rx2-2" opacity="0"><circle r="11" fill="#ff3b6b" stroke="#fff" stroke-width="1.5"/><path d="M0 4.5 C-6.5 -0.5 -7.5 -6 -3.6 -7 C-1.6 -7.5 0 -5.8 0 -4.6 C0 -5.8 1.6 -7.5 3.6 -7 C7.5 -6 6.5 -0.5 0 4.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(676 162)"><g class="anim pop rx2-3" opacity="0"><circle r="11" fill="#22b573" stroke="#fff" stroke-width="1.5"/><path d="M-5 -1 V-3 H3 M1 -5.5 L3.8 -3 L1 -0.5 M5 1 V3 H-3 M-1 5.5 L-3.8 3 L-1 0.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+      <g transform="translate(686 162)"><g class="anim pop rx2-4" opacity="0"><circle r="11" fill="#ff3b6b" stroke="#fff" stroke-width="1.5"/><path d="M0 4.5 C-6.5 -0.5 -7.5 -6 -3.6 -7 C-1.6 -7.5 0 -5.8 0 -4.6 C0 -5.8 1.6 -7.5 3.6 -7 C7.5 -6 6.5 -0.5 0 4.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(662 162)"><g class="anim pop rx2-5" opacity="0"><circle r="11" fill="#6d48b8" stroke="#fff" stroke-width="1.5"/><path d="M-3 -5.5 L5.5 0 L-3 5.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(670 162)"><g class="anim pop rx2-6" opacity="0"><circle r="11" fill="#22b573" stroke="#fff" stroke-width="1.5"/><path d="M-5 -1 V-3 H3 M1 -5.5 L3.8 -3 L1 -0.5 M5 1 V3 H-3 M-1 5.5 L-3.8 3 L-1 0.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+      <g transform="translate(680 162)"><g class="anim pop rx2-7" opacity="0"><circle r="11" fill="#ff3b6b" stroke="#fff" stroke-width="1.5"/><path d="M0 4.5 C-6.5 -0.5 -7.5 -6 -3.6 -7 C-1.6 -7.5 0 -5.8 0 -4.6 C0 -5.8 1.6 -7.5 3.6 -7 C7.5 -6 6.5 -0.5 0 4.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(640 296)"><g class="anim tile-pop tile3"><rect width="64" height="64" rx="16" fill="url(#cfInsta)"/><rect x="15" y="15" width="34" height="34" rx="10" fill="none" stroke="#fff" stroke-width="4"/><circle cx="32" cy="32" r="8" fill="none" stroke="#fff" stroke-width="4"/><circle cx="42" cy="22" r="2.6" fill="#fff"/></g></g>
+      <text class="lbl" x="672" y="380">Instagram</text>
+      <g transform="translate(666 298)"><g class="anim pop rx3-0" opacity="0"><circle r="11" fill="#ff3b6b" stroke="#fff" stroke-width="1.5"/><path d="M0 4.5 C-6.5 -0.5 -7.5 -6 -3.6 -7 C-1.6 -7.5 0 -5.8 0 -4.6 C0 -5.8 1.6 -7.5 3.6 -7 C7.5 -6 6.5 -0.5 0 4.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(682 298)"><g class="anim pop rx3-1" opacity="0"><circle r="11" fill="#6d48b8" stroke="#fff" stroke-width="1.5"/><path d="M-3 -5.5 L5.5 0 L-3 5.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(658 298)"><g class="anim pop rx3-2" opacity="0"><circle r="11" fill="#ff3b6b" stroke="#fff" stroke-width="1.5"/><path d="M0 4.5 C-6.5 -0.5 -7.5 -6 -3.6 -7 C-1.6 -7.5 0 -5.8 0 -4.6 C0 -5.8 1.6 -7.5 3.6 -7 C7.5 -6 6.5 -0.5 0 4.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(676 298)"><g class="anim pop rx3-3" opacity="0"><circle r="11" fill="#22b573" stroke="#fff" stroke-width="1.5"/><path d="M-5 -1 V-3 H3 M1 -5.5 L3.8 -3 L1 -0.5 M5 1 V3 H-3 M-1 5.5 L-3.8 3 L-1 0.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+      <g transform="translate(686 298)"><g class="anim pop rx3-4" opacity="0"><circle r="11" fill="#ff3b6b" stroke="#fff" stroke-width="1.5"/><path d="M0 4.5 C-6.5 -0.5 -7.5 -6 -3.6 -7 C-1.6 -7.5 0 -5.8 0 -4.6 C0 -5.8 1.6 -7.5 3.6 -7 C7.5 -6 6.5 -0.5 0 4.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(662 298)"><g class="anim pop rx3-5" opacity="0"><circle r="11" fill="#6d48b8" stroke="#fff" stroke-width="1.5"/><path d="M-3 -5.5 L5.5 0 L-3 5.5 Z" fill="#fff"/></g></g>
+      <g transform="translate(670 298)"><g class="anim pop rx3-6" opacity="0"><circle r="11" fill="#22b573" stroke="#fff" stroke-width="1.5"/><path d="M-5 -1 V-3 H3 M1 -5.5 L3.8 -3 L1 -0.5 M5 1 V3 H-3 M-1 5.5 L-3.8 3 L-1 0.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+      <g transform="translate(680 298)"><g class="anim pop rx3-7" opacity="0"><circle r="11" fill="#ff3b6b" stroke="#fff" stroke-width="1.5"/><path d="M0 4.5 C-6.5 -0.5 -7.5 -6 -3.6 -7 C-1.6 -7.5 0 -5.8 0 -4.6 C0 -5.8 1.6 -7.5 3.6 -7 C7.5 -6 6.5 -0.5 0 4.5 Z" fill="#fff"/></g></g>
+
+      <!-- the chef behind the cutting table -->
+      <ellipse cx="370" cy="296" rx="82" ry="8" fill="#000" opacity=".12"/>
+      <g transform="translate(370 236)"><g class="anim hopK">
+        <g class="m" data-role="chef" tabindex="0" role="button" aria-label="Chef helper, tap to say hi"><g class="poke">
+          <g class="bob"><g transform="scale(1.45)"><g class="anim squashK">
+            <path d="M-18 -28 L-26 -14" stroke="#d23d86" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <rect x="-21" y="-52" width="42" height="44" rx="18" fill="url(#cfPink)"/>
+            <path d="M-14 -20 H14 V-8 H-14 Z" fill="#fff" opacity=".95"/>
+            <g class="eyes" style="animation-delay:1.3s"><circle cx="-8" cy="-33" r="6.5" fill="#fff"/><circle cx="8" cy="-33" r="6.5" fill="#fff"/><g class="anim lookK"><circle cx="-7" cy="-32" r="3" fill="#1b1530"/><circle cx="9" cy="-32" r="3" fill="#1b1530"/></g></g><ellipse cx="-14" cy="-22" rx="3.5" ry="2" fill="#ff9cc8" opacity=".7"/><ellipse cx="14" cy="-22" rx="3.5" ry="2" fill="#ff9cc8" opacity=".7"/><path d="M-5 -21 Q0 -16 5 -21" stroke="#1b1530" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <ellipse class="anim tongueK" cx="3" cy="-17.5" rx="2.4" ry="2.2" fill="#ff6b8b" opacity="0"/>
+            <g class="anim hatK">
+              <rect x="-15" y="-63" width="30" height="13" rx="3" fill="#fff"/>
+              <circle cx="-11" cy="-66" r="9" fill="#fff"/><circle cx="11" cy="-66" r="9" fill="#fff"/><circle cx="0" cy="-72" r="11" fill="#fff"/>
+            </g>
+          </g></g></g>
+          <g class="say"><rect x="-44" y="-150" width="88" height="26" rx="13"/><path d="M-5 -124.5 L0 -117 L5 -124.5"/><text y="-132"></text></g>
+        </g></g>
+      </g></g>
+      <rect x="296" y="220" width="148" height="72" rx="12" fill="url(#cfTable)" stroke="#5b4a86" stroke-width="2"/>
+      <rect x="296" y="220" width="148" height="24" rx="10" fill="#4a3b70"/>
+      <g clip-path="url(#cfBoard)"><g class="anim strip" opacity="0">
+        <rect x="320" y="224" width="150" height="16" rx="2" fill="#1b1530"/>
+        <rect x="320" y="227" width="150" height="10" fill="#9146ff"/>
+        <rect x="350" y="225" width="2" height="14" fill="#fff" opacity=".7"/><rect x="390" y="225" width="2" height="14" fill="#fff" opacity=".7"/><rect x="430" y="225" width="2" height="14" fill="#fff" opacity=".7"/>
+      </g></g>
+      <text x="370" y="274" text-anchor="middle" font-size="17" font-weight="700" fill="#fff" font-family="system-ui, sans-serif">ClipForge</text>
+      <!-- chef's right arm: shoulder at (396,192); hand grips the scissor handles -->
+      <g transform="translate(396 192)"><g class="anim armK">
+        <path d="M0 0 Q24 -6 14 10" stroke="#d23d86" stroke-width="8.5" stroke-linecap="round" fill="none"/>
+        <g transform="translate(14 22)"><g class="anim spinK">
+          <g class="anim bladeL">
+            <path d="M-5 -9 L0 0 L5 24 L-2 2 Z" fill="#e8e4f3" stroke="#8a7bb0" stroke-width="1"/>
+            <circle cx="-7" cy="-12" r="5" fill="none" stroke="#ff8a3d" stroke-width="3.2"/>
+          </g>
+          <g class="anim bladeR">
+            <path d="M5 -9 L0 0 L-5 24 L2 2 Z" fill="#f6f3fb" stroke="#8a7bb0" stroke-width="1"/>
+            <circle cx="7" cy="-12" r="5" fill="none" stroke="#ff8a3d" stroke-width="3.2"/>
+          </g>
+          <circle r="2.2" fill="#8a7bb0"/>
+          <!-- fist around the handles, with a thumb on top -->
+          <circle cy="-12" r="6.5" fill="#e04a92"/><ellipse cx="-3" cy="-17" rx="3.4" ry="2.4" fill="#f06aa8"/>
+        </g></g>
+      </g></g>
+      <g class="anim sparks" opacity="0">
+        <g stroke="#ffc83d" stroke-width="3" stroke-linecap="round"><path d="M394 228 l-10 -6 M422 228 l10 -6 M394 240 l-10 4 M422 240 l10 4"/></g>
+        <text x="438" y="206" font-size="15" font-weight="800" fill="#ffc83d" font-family="system-ui, sans-serif">snip!</text>
+      </g>
+
+      <!-- the campaign brief on a stand: the chef's recipe -->
+      <g class="anim recipe" opacity="0"><g transform="translate(318 190) rotate(-8) scale(.62)">
+        <path d="M-6 22 L-12 50 M6 22 L12 50" stroke="#8a7bb0" stroke-width="4" stroke-linecap="round"/>
+        <rect x="-25" y="-21" width="50" height="44" rx="5" fill="#fff8e6" stroke="#ffc83d" stroke-width="2"/><rect x="-9" y="-25" width="18" height="7" rx="2" fill="#8a7bb0"/><path d="M-19 -11 l2.2 2.2 l4 -4.4" stroke="#22b573" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="-10" y="-12.5" width="22" height="3.2" rx="1.6" fill="#c9c2da"/><path d="M-19 -3 l2.2 2.2 l4 -4.4" stroke="#22b573" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="-10" y="-4.5" width="16" height="3.2" rx="1.6" fill="#c9c2da"/><path d="M-19 5 l2.2 2.2 l4 -4.4" stroke="#22b573" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="-10" y="3.5" width="20" height="3.2" rx="1.6" fill="#c9c2da"/><circle cx="18" cy="-13" r="6.5" fill="#ffc83d" stroke="#e0a400" stroke-width="1.5"/><text x="18" y="-10" text-anchor="middle" font-size="8" font-weight="900" fill="#7a5600" font-family="system-ui, sans-serif">$</text><text x="0" y="19" text-anchor="middle" font-size="7.5" font-weight="800" fill="#b8246f" font-family="system-ui, sans-serif">$2 / 1K views</text>
+      </g></g>
+
+      <!-- clips leaving the table -->
+      <g class="anim piece1" opacity="0"><rect x="443" y="210" width="20" height="32" rx="4" fill="url(#cfClip)" stroke="#fff" stroke-width="1.5"/><path d="M451 221 L457 226 L451 231 Z" fill="#fff"/><g class="anim check" opacity="0"><circle cx="463" cy="210" r="7" fill="#22b573" stroke="#fff" stroke-width="1.5"/><path d="M459.5 210 l2.5 2.5 l4.5 -5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></g></g>
+      <g class="anim piece2" opacity="0"><rect x="443" y="210" width="20" height="32" rx="4" fill="url(#cfClip)" stroke="#fff" stroke-width="1.5"/><path d="M451 221 L457 226 L451 231 Z" fill="#fff"/><g class="anim check" opacity="0"><circle cx="463" cy="210" r="7" fill="#22b573" stroke="#fff" stroke-width="1.5"/><path d="M459.5 210 l2.5 2.5 l4.5 -5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></g></g>
+      <g class="anim piece3" opacity="0"><rect x="443" y="210" width="20" height="32" rx="4" fill="url(#cfClip)" stroke="#fff" stroke-width="1.5"/><path d="M451 221 L457 226 L451 231 Z" fill="#fff"/><g class="anim check" opacity="0"><circle cx="463" cy="210" r="7" fill="#22b573" stroke="#fff" stroke-width="1.5"/><path d="M459.5 210 l2.5 2.5 l4.5 -5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></g></g>
+      <g class="anim fly1" opacity="0"><rect x="443" y="210" width="20" height="32" rx="4" fill="url(#cfClip)" stroke="#fff" stroke-width="1.5"/><path d="M451 221 L457 226 L451 231 Z" fill="#fff"/><g class="anim check" opacity="0"><circle cx="463" cy="210" r="7" fill="#22b573" stroke="#fff" stroke-width="1.5"/><path d="M459.5 210 l2.5 2.5 l4.5 -5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></g></g>
+      <g class="anim fly2" opacity="0"><rect x="443" y="210" width="20" height="32" rx="4" fill="url(#cfClip)" stroke="#fff" stroke-width="1.5"/><path d="M451 221 L457 226 L451 231 Z" fill="#fff"/><g class="anim check" opacity="0"><circle cx="463" cy="210" r="7" fill="#22b573" stroke="#fff" stroke-width="1.5"/><path d="M459.5 210 l2.5 2.5 l4.5 -5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></g></g>
+      <g class="anim fly3" opacity="0"><rect x="443" y="210" width="20" height="32" rx="4" fill="url(#cfClip)" stroke="#fff" stroke-width="1.5"/><path d="M451 221 L457 226 L451 231 Z" fill="#fff"/><g class="anim check" opacity="0"><circle cx="463" cy="210" r="7" fill="#22b573" stroke="#fff" stroke-width="1.5"/><path d="M459.5 210 l2.5 2.5 l4.5 -5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></g></g>
+
+      <!-- helpers -->
+      <g transform="translate(190 190)"><g class="anim walkA"><g class="anim hopA">
+        <g class="m" data-role="fetch" tabindex="0" role="button" aria-label="Fetcher helper, tap to say hi"><g class="poke">
+          <g class="anim leanA"><g class="bob"><rect class="leg l" x="-12" y="-11" width="8" height="12" rx="4" fill="#7a1a4c"/><rect class="leg r" x="4" y="-11" width="8" height="12" rx="4" fill="#7a1a4c"/><path class="anim armsDnA" d="M-18 -28 L-25 -12 M18 -28 L25 -12" stroke="#d23d86" stroke-width="6" stroke-linecap="round" fill="none"/><path class="anim armsUpA" opacity="0" d="M-18 -28 L-24 -56 M18 -28 L24 -56" stroke="#d23d86" stroke-width="6" stroke-linecap="round" fill="none"/>
+          <rect x="-21" y="-52" width="42" height="44" rx="18" fill="url(#cfPink)"/><g class="eyes" style="animation-delay:0.4s"><circle cx="-8" cy="-33" r="6.5" fill="#fff"/><circle cx="8" cy="-33" r="6.5" fill="#fff"/><g class="anim lookA"><circle cx="-7" cy="-32" r="3" fill="#1b1530"/><circle cx="9" cy="-32" r="3" fill="#1b1530"/></g></g><ellipse cx="-14" cy="-22" rx="3.5" ry="2" fill="#ff9cc8" opacity=".7"/><ellipse cx="14" cy="-22" rx="3.5" ry="2" fill="#ff9cc8" opacity=".7"/><path d="M-5 -21 Q0 -16 5 -21" stroke="#1b1530" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M-19 -44 Q0 -64 19 -44 Z" fill="#ffc83d"/><rect x="-23" y="-46" width="46" height="5" rx="2.5" fill="#f2a900"/>
+          <g class="anim reelA" opacity="0"><rect x="-34" y="-94" width="68" height="40" rx="7" fill="#9146ff" stroke="#b98cff" stroke-width="2"/><g fill="#fff" opacity=".8"><rect x="-31.5" y="-90" width="3" height="3.2" rx=".8"/><rect x="-31.5" y="-83" width="3" height="3.2" rx=".8"/><rect x="-31.5" y="-76" width="3" height="3.2" rx=".8"/><rect x="-31.5" y="-69" width="3" height="3.2" rx=".8"/><rect x="-31.5" y="-62" width="3" height="3.2" rx=".8"/><rect x="28.5" y="-90" width="3" height="3.2" rx=".8"/><rect x="28.5" y="-83" width="3" height="3.2" rx=".8"/><rect x="28.5" y="-76" width="3" height="3.2" rx=".8"/><rect x="28.5" y="-69" width="3" height="3.2" rx=".8"/><rect x="28.5" y="-62" width="3" height="3.2" rx=".8"/></g><rect x="-26" y="-90" width="52" height="32" rx="4" fill="#120d1f"/><rect x="-26" y="-90" width="52" height="32" rx="4" fill="url(#cfScreen)" opacity=".55"/><circle cx="0" cy="-76" r="8.5" fill="#fff"/><path d="M-2.6 -80.5 L4.4 -76 L-2.6 -71.5 Z" fill="#9146ff"/><rect x="-22" y="-64" width="44" height="3" rx="1.5" fill="#fff" opacity=".25"/><rect x="-22" y="-64" width="17" height="3" rx="1.5" fill="#ff4f7b"/><circle cx="-5" cy="-62.5" r="2.4" fill="#fff"/><rect x="-24" y="-88" width="17" height="8" rx="2" fill="#eb0400"/><text x="-15.5" y="-81.8" text-anchor="middle" font-size="6.5" font-weight="800" fill="#fff" font-family="system-ui, sans-serif">VOD</text></g></g></g>
+          <text class="anim bang bangA" x="34" y="-66" opacity="0" font-size="24" font-weight="900" fill="#ffc83d" stroke="#1b1530" stroke-width="1.5" font-family="system-ui, sans-serif">!</text><g class="say"><rect x="-44" y="-128" width="88" height="26" rx="13"/><path d="M-5 -102.5 L0 -95 L5 -102.5"/><text y="-110"></text></g>
+        </g></g>
+      </g></g></g>
+      <g transform="translate(190 350)"><g class="anim walkB"><g class="anim hopB">
+        <g class="m" data-role="fetch" tabindex="0" role="button" aria-label="Fetcher helper, tap to say hi"><g class="poke">
+          <g class="anim leanB"><g class="bob"><rect class="leg l" x="-12" y="-11" width="8" height="12" rx="4" fill="#7a1a4c"/><rect class="leg r" x="4" y="-11" width="8" height="12" rx="4" fill="#7a1a4c"/><path class="anim armsDnB" d="M-18 -28 L-25 -12 M18 -28 L25 -12" stroke="#d23d86" stroke-width="6" stroke-linecap="round" fill="none"/><path class="anim armsUpB" opacity="0" d="M-18 -28 L-24 -56 M18 -28 L24 -56" stroke="#d23d86" stroke-width="6" stroke-linecap="round" fill="none"/>
+          <rect x="-21" y="-52" width="42" height="44" rx="18" fill="url(#cfPink)"/><g class="eyes" style="animation-delay:2.1s"><circle cx="-8" cy="-33" r="6.5" fill="#fff"/><circle cx="8" cy="-33" r="6.5" fill="#fff"/><g class="anim lookB"><circle cx="-7" cy="-32" r="3" fill="#1b1530"/><circle cx="9" cy="-32" r="3" fill="#1b1530"/></g></g><ellipse cx="-14" cy="-22" rx="3.5" ry="2" fill="#ff9cc8" opacity=".7"/><ellipse cx="14" cy="-22" rx="3.5" ry="2" fill="#ff9cc8" opacity=".7"/><path d="M-5 -21 Q0 -16 5 -21" stroke="#1b1530" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M-19 -44 Q0 -64 19 -44 Z" fill="#ffc83d"/><rect x="-23" y="-46" width="46" height="5" rx="2.5" fill="#f2a900"/>
+          <g class="anim reelB" opacity="0"><g transform="translate(0 -74)"><rect x="-25" y="-21" width="50" height="44" rx="5" fill="#fff8e6" stroke="#ffc83d" stroke-width="2"/><rect x="-9" y="-25" width="18" height="7" rx="2" fill="#8a7bb0"/><path d="M-19 -11 l2.2 2.2 l4 -4.4" stroke="#22b573" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="-10" y="-12.5" width="22" height="3.2" rx="1.6" fill="#c9c2da"/><path d="M-19 -3 l2.2 2.2 l4 -4.4" stroke="#22b573" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="-10" y="-4.5" width="16" height="3.2" rx="1.6" fill="#c9c2da"/><path d="M-19 5 l2.2 2.2 l4 -4.4" stroke="#22b573" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="-10" y="3.5" width="20" height="3.2" rx="1.6" fill="#c9c2da"/><circle cx="18" cy="-13" r="6.5" fill="#ffc83d" stroke="#e0a400" stroke-width="1.5"/><text x="18" y="-10" text-anchor="middle" font-size="8" font-weight="900" fill="#7a5600" font-family="system-ui, sans-serif">$</text><text x="0" y="19" text-anchor="middle" font-size="7.5" font-weight="800" fill="#b8246f" font-family="system-ui, sans-serif">$2 / 1K views</text></g></g></g></g>
+          <text class="anim bang bangB" x="34" y="-66" opacity="0" font-size="24" font-weight="900" fill="#ffc83d" stroke="#1b1530" stroke-width="1.5" font-family="system-ui, sans-serif">!</text><g class="say"><rect x="-44" y="-128" width="88" height="26" rx="13"/><path d="M-5 -102.5 L0 -95 L5 -102.5"/><text y="-110"></text></g>
+        </g></g>
+      </g></g></g>
+      <g transform="translate(530 190)"><g class="anim walkC1"><g class="anim hopC1">
+        <g class="m" data-role="courier" tabindex="0" role="button" aria-label="Courier helper, tap to say hi"><g class="poke">
+          <g class="anim leanC1"><g class="bob"><rect class="leg l" x="-12" y="-11" width="8" height="12" rx="4" fill="#3a2266"/><rect class="leg r" x="4" y="-11" width="8" height="12" rx="4" fill="#3a2266"/><path class="anim armsDnC1" d="M-18 -28 L-25 -12 M18 -28 L25 -12" stroke="#6d48b8" stroke-width="6" stroke-linecap="round" fill="none"/><path class="anim armsUpC1" opacity="0" d="M-18 -28 L-24 -56 M18 -28 L24 -56" stroke="#6d48b8" stroke-width="6" stroke-linecap="round" fill="none"/>
+          <rect x="-21" y="-52" width="42" height="44" rx="18" fill="url(#cfPurple)"/><g class="eyes" style="animation-delay:1.0s"><circle cx="-8" cy="-33" r="6.5" fill="#fff"/><circle cx="8" cy="-33" r="6.5" fill="#fff"/><g class="anim lookC1"><circle cx="-7" cy="-32" r="3" fill="#1b1530"/><circle cx="9" cy="-32" r="3" fill="#1b1530"/></g></g><ellipse cx="-14" cy="-22" rx="3.5" ry="2" fill="#ff9cc8" opacity=".7"/><ellipse cx="14" cy="-22" rx="3.5" ry="2" fill="#ff9cc8" opacity=".7"/><path d="M-5 -21 Q0 -16 5 -21" stroke="#1b1530" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M-17 -47 Q0 -62 17 -47 Z" fill="#b8246f"/><rect x="-4" y="-49" width="26" height="4" rx="2" fill="#8f1a55"/>
+          <g class="anim carry1" opacity="0"><rect x="-10" y="-88" width="20" height="32" rx="4" fill="url(#cfClip)" stroke="#fff" stroke-width="1.5"/><path d="M-2 -77 L4 -72 L-2 -67 Z" fill="#fff"/><g class="anim check" opacity="0"><circle cx="10" cy="-88" r="7" fill="#22b573" stroke="#fff" stroke-width="1.5"/><path d="M6.5 -88 l2.5 2.5 l4.5 -5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></g></g></g></g>
+          <g class="say"><rect x="-44" y="-128" width="88" height="26" rx="13"/><path d="M-5 -102.5 L0 -95 L5 -102.5"/><text y="-110"></text></g>
+        </g></g>
+      </g></g></g>
+      <g transform="translate(530 290)"><g class="anim walkC2"><g class="anim hopC2">
+        <g class="m" data-role="courier" tabindex="0" role="button" aria-label="Courier helper, tap to say hi"><g class="poke">
+          <g class="anim leanC2"><g class="bob"><rect class="leg l" x="-12" y="-11" width="8" height="12" rx="4" fill="#3a2266"/><rect class="leg r" x="4" y="-11" width="8" height="12" rx="4" fill="#3a2266"/><path class="anim armsDnC2" d="M-18 -28 L-25 -12 M18 -28 L25 -12" stroke="#6d48b8" stroke-width="6" stroke-linecap="round" fill="none"/><path class="anim armsUpC2" opacity="0" d="M-18 -28 L-24 -56 M18 -28 L24 -56" stroke="#6d48b8" stroke-width="6" stroke-linecap="round" fill="none"/>
+          <rect x="-21" y="-52" width="42" height="44" rx="18" fill="url(#cfPurple)"/><g class="eyes" style="animation-delay:3.0s"><circle cx="-8" cy="-33" r="6.5" fill="#fff"/><circle cx="8" cy="-33" r="6.5" fill="#fff"/><g class="anim lookC2"><circle cx="-7" cy="-32" r="3" fill="#1b1530"/><circle cx="9" cy="-32" r="3" fill="#1b1530"/></g></g><ellipse cx="-14" cy="-22" rx="3.5" ry="2" fill="#ff9cc8" opacity=".7"/><ellipse cx="14" cy="-22" rx="3.5" ry="2" fill="#ff9cc8" opacity=".7"/><path d="M-5 -21 Q0 -16 5 -21" stroke="#1b1530" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M-17 -47 Q0 -62 17 -47 Z" fill="#b8246f"/><rect x="-4" y="-49" width="26" height="4" rx="2" fill="#8f1a55"/>
+          <g class="anim carry2" opacity="0"><rect x="-10" y="-88" width="20" height="32" rx="4" fill="url(#cfClip)" stroke="#fff" stroke-width="1.5"/><path d="M-2 -77 L4 -72 L-2 -67 Z" fill="#fff"/><g class="anim check" opacity="0"><circle cx="10" cy="-88" r="7" fill="#22b573" stroke="#fff" stroke-width="1.5"/><path d="M6.5 -88 l2.5 2.5 l4.5 -5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></g></g></g></g>
+          <g class="say"><rect x="-44" y="-128" width="88" height="26" rx="13"/><path d="M-5 -102.5 L0 -95 L5 -102.5"/><text y="-110"></text></g>
+        </g></g>
+      </g></g></g>
+      <g transform="translate(530 390)"><g class="anim walkC3"><g class="anim hopC3">
+        <g class="m" data-role="courier" tabindex="0" role="button" aria-label="Courier helper, tap to say hi"><g class="poke">
+          <g class="anim leanC3"><g class="bob"><rect class="leg l" x="-12" y="-11" width="8" height="12" rx="4" fill="#3a2266"/><rect class="leg r" x="4" y="-11" width="8" height="12" rx="4" fill="#3a2266"/><path class="anim armsDnC3" d="M-18 -28 L-25 -12 M18 -28 L25 -12" stroke="#6d48b8" stroke-width="6" stroke-linecap="round" fill="none"/><path class="anim armsUpC3" opacity="0" d="M-18 -28 L-24 -56 M18 -28 L24 -56" stroke="#6d48b8" stroke-width="6" stroke-linecap="round" fill="none"/>
+          <rect x="-21" y="-52" width="42" height="44" rx="18" fill="url(#cfPurple)"/><g class="eyes" style="animation-delay:0s"><circle cx="-8" cy="-33" r="6.5" fill="#fff"/><circle cx="8" cy="-33" r="6.5" fill="#fff"/><g class="anim lookC3"><circle cx="-7" cy="-32" r="3" fill="#1b1530"/><circle cx="9" cy="-32" r="3" fill="#1b1530"/></g></g><ellipse cx="-14" cy="-22" rx="3.5" ry="2" fill="#ff9cc8" opacity=".7"/><ellipse cx="14" cy="-22" rx="3.5" ry="2" fill="#ff9cc8" opacity=".7"/><path d="M-5 -21 Q0 -16 5 -21" stroke="#1b1530" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M-17 -47 Q0 -62 17 -47 Z" fill="#b8246f"/><rect x="-4" y="-49" width="26" height="4" rx="2" fill="#8f1a55"/>
+          <g class="anim carry3" opacity="0"><rect x="-10" y="-88" width="20" height="32" rx="4" fill="url(#cfClip)" stroke="#fff" stroke-width="1.5"/><path d="M-2 -77 L4 -72 L-2 -67 Z" fill="#fff"/><g class="anim check" opacity="0"><circle cx="10" cy="-88" r="7" fill="#22b573" stroke="#fff" stroke-width="1.5"/><path d="M6.5 -88 l2.5 2.5 l4.5 -5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></g></g></g></g>
+          <g class="say"><rect x="-44" y="-128" width="88" height="26" rx="13"/><path d="M-5 -102.5 L0 -95 L5 -102.5"/><text y="-110"></text></g>
+        </g></g>
+      </g></g></g>
+
+      <!-- post links on their way back to Content Rewards -->
+      <g transform="translate(672 56)"><g class="anim link1" opacity="0"><rect x="-17" y="-10" width="34" height="20" rx="10" fill="#22b573" stroke="#fff" stroke-width="1.5"/><rect x="-9.5" y="-3.5" width="10" height="7" rx="3.5" fill="none" stroke="#fff" stroke-width="2"/><rect x="-0.5" y="-3.5" width="10" height="7" rx="3.5" fill="none" stroke="#fff" stroke-width="2"/></g></g>
+      <g transform="translate(672 192)"><g class="anim link2" opacity="0"><rect x="-17" y="-10" width="34" height="20" rx="10" fill="#22b573" stroke="#fff" stroke-width="1.5"/><rect x="-9.5" y="-3.5" width="10" height="7" rx="3.5" fill="none" stroke="#fff" stroke-width="2"/><rect x="-0.5" y="-3.5" width="10" height="7" rx="3.5" fill="none" stroke="#fff" stroke-width="2"/></g></g>
+      <g transform="translate(672 328)"><g class="anim link3" opacity="0"><rect x="-17" y="-10" width="34" height="20" rx="10" fill="#22b573" stroke="#fff" stroke-width="1.5"/><rect x="-9.5" y="-3.5" width="10" height="7" rx="3.5" fill="none" stroke="#fff" stroke-width="2"/><rect x="-0.5" y="-3.5" width="10" height="7" rx="3.5" fill="none" stroke="#fff" stroke-width="2"/></g></g>
+    </svg>
+    <div class="flow-bar"><span>Tip: tap a helper to say hi.</span><button type="button" class="flow-toggle" aria-pressed="false">Pause</button></div>
+    <ol class="steps">
+      <li class="s1"><b>1. Fetch</b>Helpers pick up long streams from Twitch and campaign briefs from Content Rewards.</li>
+      <li class="s2"><b>2. Cut</b>Following the campaign brief, the chef finds the best moments and snips them into vertical clips.</li>
+      <li class="s3"><b>3. Check</b>Every clip is reviewed and approved before anything is posted.</li>
+      <li class="s4"><b>4. Post</b>Couriers carry each approved clip to YouTube, TikTok and Instagram, where the likes, views and reposts start flying in.</li>
+      <li class="s5"><b>5. Get paid</b>The post links go back to Content Rewards, which pays out for the views.</li>
+    </ol>
+  </div>
 
   <h2>What it does</h2>
   <ul>
