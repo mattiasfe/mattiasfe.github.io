@@ -623,10 +623,10 @@
 .flow .coin1 { animation-name: cf-coin1; animation-timing-function: ease-out; }
 @keyframes cf-coin1 {
   0%, 89% { opacity: 0; transform: translate(0, 0) scale(.4); }
-  89.6% { opacity: 1; transform: translate(0, -8px) scale(1.15); }
-  90.9% { opacity: 1; transform: translate(7px, -70px) scale(1); }
-  92.1% { opacity: 1; transform: translate(14px, -44px) scale(.6); }
-  92.4%, 100% { opacity: 0; transform: translate(14px, -40px) scale(.4); }
+  89.6% { opacity: 1; transform: translate(0, -10px) scale(1.15); }
+  91.5% { opacity: 1; transform: translate(186px, 14px) scale(1); }
+  93.4% { opacity: 1; transform: translate(372px, 52px) scale(.7); }
+  93.8%, 100% { opacity: 0; transform: translate(372px, 62px) scale(.4); }
 }
 .flow .link2 { animation-name: cf-link2; animation-timing-function: linear; }
 @keyframes cf-link2 {
@@ -642,10 +642,10 @@
 .flow .coin2 { animation-name: cf-coin2; animation-timing-function: ease-out; }
 @keyframes cf-coin2 {
   0%, 90.6% { opacity: 0; transform: translate(0, 0) scale(.4); }
-  91.2% { opacity: 1; transform: translate(0, -8px) scale(1.15); }
-  92.5% { opacity: 1; transform: translate(-3px, -70px) scale(1); }
-  93.7% { opacity: 1; transform: translate(-6px, -44px) scale(.6); }
-  94%, 100% { opacity: 0; transform: translate(-6px, -40px) scale(.4); }
+  91.2% { opacity: 1; transform: translate(0, -10px) scale(1.15); }
+  93.1% { opacity: 1; transform: translate(176px, 14px) scale(1); }
+  95% { opacity: 1; transform: translate(352px, 52px) scale(.7); }
+  95.4%, 100% { opacity: 0; transform: translate(352px, 62px) scale(.4); }
 }
 .flow .link3 { animation-name: cf-link3; animation-timing-function: linear; }
 @keyframes cf-link3 {
@@ -661,10 +661,10 @@
 .flow .coin3 { animation-name: cf-coin3; animation-timing-function: ease-out; }
 @keyframes cf-coin3 {
   0%, 92.2% { opacity: 0; transform: translate(0, 0) scale(.4); }
-  92.8% { opacity: 1; transform: translate(0, -8px) scale(1.15); }
-  94.1% { opacity: 1; transform: translate(-10px, -70px) scale(1); }
-  95.3% { opacity: 1; transform: translate(-20px, -44px) scale(.6); }
-  95.6%, 100% { opacity: 0; transform: translate(-20px, -40px) scale(.4); }
+  92.8% { opacity: 1; transform: translate(0, -10px) scale(1.15); }
+  94.7% { opacity: 1; transform: translate(169px, 14px) scale(1); }
+  96.6% { opacity: 1; transform: translate(338px, 52px) scale(.7); }
+  97%, 100% { opacity: 0; transform: translate(338px, 62px) scale(.4); }
 }
 .flow .walletpop { animation-name: cf-wallet; transform-box: fill-box; transform-origin: 50% 70%; }
 @keyframes cf-wallet {
@@ -672,6 +672,13 @@
   92.4% { transform: scale(1.14); } 93.2% { transform: scale(1); }
   94% { transform: scale(1.14); } 94.8% { transform: scale(1); }
   95.6% { transform: scale(1.18); } 96.6% { transform: scale(1); }
+}
+.flow .scene-d .walletpop { animation-name: cf-walletD; }
+@keyframes cf-walletD {
+  0%, 93.3%, 100% { transform: scale(1); }
+  93.8% { transform: scale(1.14); } 94.6% { transform: scale(1); }
+  95.4% { transform: scale(1.14); } 96.2% { transform: scale(1); }
+  97% { transform: scale(1.18); } 98% { transform: scale(1); }
 }
 .flow .crpop { animation-name: cf-crpop; transform-origin: center; }
 @keyframes cf-crpop {
