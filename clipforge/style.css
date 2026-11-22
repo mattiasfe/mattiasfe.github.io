@@ -1,18 +1,10 @@
 :root {
-  --bg: #ffffff;
-  --text: #1b1530;
-  --muted: #5d5873;
-  --accent: #b8246f;
-  --line: #e6e3ee;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #14111f;
-    --text: #ece9f5;
-    --muted: #a9a3bd;
-    --accent: #f06aa8;
-    --line: #2c2740;
-  }
+  color-scheme: dark;
+  --bg: #17606b;
+  --text: #f2fcfb;
+  --muted: #c3e4e3;
+  --accent: #7ff5e8;
+  --line: #2f7c86;
 }
 * { box-sizing: border-box; }
 body {
@@ -31,3 +23,28 @@ p, li { color: var(--text); }
 .muted { color: var(--muted); }
 a { color: var(--accent); }
 nav { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); }
+
+/* metallic turquoise finish (same in light and dark system themes) */
+  /* the metal sits on its own fixed, composited layer so scrolling never repaints it */
+  body { background-color: var(--bg); }
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 3px),
+      linear-gradient(125deg, #0f4c56 0%, #2b8b95 18%, #155f6a 36%, #4aa9b1 52%, #135a65 68%, #2a8792 84%, #0f4d57 100%);
+  }
+  h1 {
+    background: linear-gradient(180deg, #ffffff 0%, #ffffff 40%, #c9f3ef 58%, #ffffff 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 2px 2px rgba(0, 28, 34, .65)) drop-shadow(0 0 8px rgba(0, 28, 34, .35));
+  }
+  main > p, main > ul li, h2, header a, .steps li, .flow-bar { text-shadow: 0 1px 2px rgba(0, 28, 34, .6); }
+  main > p, main > p.muted { color: #f4fffe; }
+  .steps li {
+    background: linear-gradient(160deg, rgba(255,255,255,.14), rgba(255,255,255,.03) 55%, rgba(0,0,0,.10));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 2px 6px rgba(0,0,0,.18);
+  }
+  .flow-bar button {
+    background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.04));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.3);
+  }

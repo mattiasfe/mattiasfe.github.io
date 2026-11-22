@@ -26,6 +26,13 @@
     });
   });
 
+  // stop all the moving parts while the scene is off screen
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      flow.classList.toggle('offscreen', !entries[0].isIntersecting);
+    }).observe(flow);
+  }
+
   var btn = flow.querySelector('.flow-toggle');
   if (btn) btn.addEventListener('click', function () {
     var paused = flow.classList.toggle('paused');
