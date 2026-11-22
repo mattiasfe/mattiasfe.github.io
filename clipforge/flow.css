@@ -622,9 +622,11 @@
 }
 .flow .coin1 { animation-name: cf-coin1; animation-timing-function: ease-out; }
 @keyframes cf-coin1 {
-  0%, 89% { opacity: 0; transform: translateY(0) scale(.4); }
-  89.6% { opacity: 1; transform: translateY(-8px) scale(1.15); }
-  95%, 100% { opacity: 0; transform: translateY(-58px) scale(.9); }
+  0%, 89% { opacity: 0; transform: translate(0, 0) scale(.4); }
+  89.6% { opacity: 1; transform: translate(0, -8px) scale(1.15); }
+  90.9% { opacity: 1; transform: translate(7px, -70px) scale(1); }
+  92.1% { opacity: 1; transform: translate(14px, -44px) scale(.6); }
+  92.4%, 100% { opacity: 0; transform: translate(14px, -40px) scale(.4); }
 }
 .flow .link2 { animation-name: cf-link2; animation-timing-function: linear; }
 @keyframes cf-link2 {
@@ -639,9 +641,11 @@
 }
 .flow .coin2 { animation-name: cf-coin2; animation-timing-function: ease-out; }
 @keyframes cf-coin2 {
-  0%, 90.6% { opacity: 0; transform: translateY(0) scale(.4); }
-  91.2% { opacity: 1; transform: translateY(-8px) scale(1.15); }
-  96.6%, 100% { opacity: 0; transform: translateY(-58px) scale(.9); }
+  0%, 90.6% { opacity: 0; transform: translate(0, 0) scale(.4); }
+  91.2% { opacity: 1; transform: translate(0, -8px) scale(1.15); }
+  92.5% { opacity: 1; transform: translate(-3px, -70px) scale(1); }
+  93.7% { opacity: 1; transform: translate(-6px, -44px) scale(.6); }
+  94%, 100% { opacity: 0; transform: translate(-6px, -40px) scale(.4); }
 }
 .flow .link3 { animation-name: cf-link3; animation-timing-function: linear; }
 @keyframes cf-link3 {
@@ -656,9 +660,18 @@
 }
 .flow .coin3 { animation-name: cf-coin3; animation-timing-function: ease-out; }
 @keyframes cf-coin3 {
-  0%, 92.2% { opacity: 0; transform: translateY(0) scale(.4); }
-  92.8% { opacity: 1; transform: translateY(-8px) scale(1.15); }
-  98.2%, 100% { opacity: 0; transform: translateY(-58px) scale(.9); }
+  0%, 92.2% { opacity: 0; transform: translate(0, 0) scale(.4); }
+  92.8% { opacity: 1; transform: translate(0, -8px) scale(1.15); }
+  94.1% { opacity: 1; transform: translate(-10px, -70px) scale(1); }
+  95.3% { opacity: 1; transform: translate(-20px, -44px) scale(.6); }
+  95.6%, 100% { opacity: 0; transform: translate(-20px, -40px) scale(.4); }
+}
+.flow .walletpop { animation-name: cf-wallet; transform-box: fill-box; transform-origin: 50% 70%; }
+@keyframes cf-wallet {
+  0%, 91.9%, 100% { transform: scale(1); }
+  92.4% { transform: scale(1.14); } 93.2% { transform: scale(1); }
+  94% { transform: scale(1.14); } 94.8% { transform: scale(1); }
+  95.6% { transform: scale(1.18); } 96.6% { transform: scale(1); }
 }
 .flow .crpop { animation-name: cf-crpop; transform-origin: center; }
 @keyframes cf-crpop {
