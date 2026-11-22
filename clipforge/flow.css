@@ -624,9 +624,9 @@
 @keyframes cf-coin1 {
   0%, 89% { opacity: 0; transform: translate(0, 0) scale(.4); }
   89.6% { opacity: 1; transform: translate(0, -10px) scale(1.15); }
-  91.5% { opacity: 1; transform: translate(186px, 14px) scale(1); }
-  93.4% { opacity: 1; transform: translate(372px, 52px) scale(.7); }
-  93.8%, 100% { opacity: 0; transform: translate(372px, 62px) scale(.4); }
+  91.5% { opacity: 1; transform: translate(186px, 30px) scale(1); }
+  93.4% { opacity: 1; transform: translate(372px, 76px) scale(.7); }
+  93.8%, 100% { opacity: 0; transform: translate(372px, 86px) scale(.4); }
 }
 .flow .link2 { animation-name: cf-link2; animation-timing-function: linear; }
 @keyframes cf-link2 {
@@ -643,9 +643,9 @@
 @keyframes cf-coin2 {
   0%, 90.6% { opacity: 0; transform: translate(0, 0) scale(.4); }
   91.2% { opacity: 1; transform: translate(0, -10px) scale(1.15); }
-  93.1% { opacity: 1; transform: translate(176px, 14px) scale(1); }
-  95% { opacity: 1; transform: translate(352px, 52px) scale(.7); }
-  95.4%, 100% { opacity: 0; transform: translate(352px, 62px) scale(.4); }
+  93.1% { opacity: 1; transform: translate(176px, 30px) scale(1); }
+  95% { opacity: 1; transform: translate(352px, 76px) scale(.7); }
+  95.4%, 100% { opacity: 0; transform: translate(352px, 86px) scale(.4); }
 }
 .flow .link3 { animation-name: cf-link3; animation-timing-function: linear; }
 @keyframes cf-link3 {
@@ -662,9 +662,9 @@
 @keyframes cf-coin3 {
   0%, 92.2% { opacity: 0; transform: translate(0, 0) scale(.4); }
   92.8% { opacity: 1; transform: translate(0, -10px) scale(1.15); }
-  94.7% { opacity: 1; transform: translate(169px, 14px) scale(1); }
-  96.6% { opacity: 1; transform: translate(338px, 52px) scale(.7); }
-  97%, 100% { opacity: 0; transform: translate(338px, 62px) scale(.4); }
+  94.7% { opacity: 1; transform: translate(169px, 30px) scale(1); }
+  96.6% { opacity: 1; transform: translate(338px, 76px) scale(.7); }
+  97%, 100% { opacity: 0; transform: translate(338px, 86px) scale(.4); }
 }
 .flow .walletpop { animation-name: cf-wallet; transform-box: fill-box; transform-origin: 50% 70%; }
 @keyframes cf-wallet {
