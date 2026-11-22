@@ -226,28 +226,22 @@
   92.6%, 100% { opacity: 0; transform: translate(-24px, -496px) scale(.3); }
 }
 
-/* coins fly from Content Rewards into your wallet */
-.flow .scene-m .coin1 { animation-name: cfm-coin1; animation-timing-function: ease-in-out; }
+/* coins pop up out of Content Rewards (phone keeps the original payout) */
+.flow .scene-m .coin1 { animation-name: cfm-coin1; animation-timing-function: ease-out; }
 @keyframes cfm-coin1 {
-  0%, 89% { opacity: 0; transform: translate(0, 0) scale(.4); }
-  89.6% { opacity: 1; transform: translate(0, -14px) scale(1.15); }
-  90.9% { opacity: 1; transform: translate(-44px, -22px) scale(1); }
-  92.1% { opacity: 1; transform: translate(-88px, -14px) scale(.6); }
-  92.4%, 100% { opacity: 0; transform: translate(-88px, -8px) scale(.4); }
+  0%, 89% { opacity: 0; transform: translateY(0) scale(.4); }
+  89.6% { opacity: 1; transform: translateY(-8px) scale(1.15); }
+  95%, 100% { opacity: 0; transform: translateY(-58px) scale(.9); }
 }
-.flow .scene-m .coin2 { animation-name: cfm-coin2; animation-timing-function: ease-in-out; }
+.flow .scene-m .coin2 { animation-name: cfm-coin2; animation-timing-function: ease-out; }
 @keyframes cfm-coin2 {
-  0%, 90.6% { opacity: 0; transform: translate(0, 0) scale(.4); }
-  91.2% { opacity: 1; transform: translate(0, -14px) scale(1.15); }
-  92.5% { opacity: 1; transform: translate(-54px, -22px) scale(1); }
-  93.7% { opacity: 1; transform: translate(-108px, -14px) scale(.6); }
-  94%, 100% { opacity: 0; transform: translate(-108px, -8px) scale(.4); }
+  0%, 90.6% { opacity: 0; transform: translateY(0) scale(.4); }
+  91.2% { opacity: 1; transform: translateY(-8px) scale(1.15); }
+  96.6%, 100% { opacity: 0; transform: translateY(-58px) scale(.9); }
 }
-.flow .scene-m .coin3 { animation-name: cfm-coin3; animation-timing-function: ease-in-out; }
+.flow .scene-m .coin3 { animation-name: cfm-coin3; animation-timing-function: ease-out; }
 @keyframes cfm-coin3 {
-  0%, 92.2% { opacity: 0; transform: translate(0, 0) scale(.4); }
-  92.8% { opacity: 1; transform: translate(0, -14px) scale(1.15); }
-  94.1% { opacity: 1; transform: translate(-61px, -22px) scale(1); }
-  95.3% { opacity: 1; transform: translate(-122px, -14px) scale(.6); }
-  95.6%, 100% { opacity: 0; transform: translate(-122px, -8px) scale(.4); }
+  0%, 92.2% { opacity: 0; transform: translateY(0) scale(.4); }
+  92.8% { opacity: 1; transform: translateY(-8px) scale(1.15); }
+  98.2%, 100% { opacity: 0; transform: translateY(-58px) scale(.9); }
 }
